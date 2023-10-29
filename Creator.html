@@ -1,22 +1,14 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nebula Nexus</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     
-    
     <style>
-        
-        /* Header styles */
-        header {
-            background-color: rgb(58, 0, 124);
-            color: white;
-            padding: 1px 0;
-            width: 100%;
-        }
-
         /* Reset some default styles */
         body, h1, h2, ul, li {
             margin: 0;
@@ -28,22 +20,21 @@
         body {
             font-family: Arial, sans-serif;
             background-color: rgb(171, 171, 214);
-            color: #ffffff;
+            color: #000;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* CSS Styles for Nebula Nexus header */
-        header h1 {
-            margin: 0;
-            padding: 0;
+        /* Header styles */
+        header {
+            background-color: rgb(58, 0, 124);
+            color: white;
+            padding: 1px 0;
         }
 
-        /* CSS Styles for Avatar Creator header */
-        h1#avatar-creator {
-            margin: 20px 0;
-            padding: 20px;
+        h3 {
+            font-size: 12px; /* You can change the value to your desired font size */
         }
 
         .header-content {
@@ -73,115 +64,30 @@
             margin-right: 20px;
         }
 
-        /* Style for individual boxes */
-        .box {
-            flex-basis: calc(33.33% - 20px);
-            padding: 4px;
-            background-color: rgb(225, 218, 243);
-            color: black;
-            margin: 100px;
-            border-radius: 20px;
-            border: 4px solid rgb(58, 0, 124);
-            text-align: center;
-        }
-
-        h1.page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin: 0;
-            padding: 20px;
-        }
-
-        #imageInput {
-            min-width: 150px;
-        }
-
-        body {
+        /* Main content styles */
+        main {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            justify-content: space-between;
             background-image: url('https://i.postimg.cc/3R7pkWRm/gal.png');
             background-size: contain;
-            background-repeat: repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
+            flex: 1;
         }
 
-        canvas {
-            border: 1px solid rgb(255, 255, 255);
-            background-color: white;
+        /* Footer styles */
+        footer {
+            background-color: rgb(58, 0, 124);
+            padding: 10px 0;
+            text-align: center;
+            flex-shrink: 0;
         }
 
-        /* CSS Styles for the layer container */
-        .canvas-container {
+        nav ul {
+            list-style-type: none;
             display: flex;
-            flex-direction: row; /* Arrange elements horizontally */
-            align-items: flex-start; /* Align items to the top */
         }
 
-        /* Adjust the width and styling of the canvas */
-        canvas {
-            border: 1px solid rgb(255, 255, 255);
-            background-color: white;
-            flex: 1; /* Take up remaining space */
-        }
-
-        /* CSS Styles for the layer container */
-        .layer-container {
-            max-height: 380px;
-            overflow-y: scroll;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-left: 10px; /* Add margin to separate it from the canvas */
-        }
-
-        .layer-item img {
-            max-width: 20%;
-        }
-
-        #layerList {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .layer-item {
-            display: flex;
-            background-color: lavender;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .layer-button {
-            background-color: #8600d3;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-       
-        #saveButton {
-            background-color: #8600d3;
-            color: white;
-            padding: 10px 19px;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* New CSS for delete button */
-        .delete-button {
-            background-color: #8600d3;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            cursor: pointer;
+        #announcements .announcement-text {
+            text-align: left;
         }
 
         nav li {
@@ -189,7 +95,6 @@
             font-size: 16px;
         }
 
-        /* Style the links on hover */
         nav li a {
             color: #FFD700;
             text-decoration: none;
@@ -199,14 +104,36 @@
         nav li a:hover {
             color: white;
         }
-        
-        /* Footer styles */
-        footer {
-            background-color: rgb(58, 0, 124);
-            padding: 10px 10px;
-            text-align: center;
-            flex-shrink: 0;
+
+        /* Center the bubble container */
+        .bubble-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
         }
+
+        /* Style the bubble container */
+        .bubble {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            color: white; /* Text color */
+        }
+
+        /* Style the text inside the bubble */
+        .bubble-text {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Style the logo image */
+        .bubble img {
+            max-width: 100%; /* Make sure the image doesn't exceed the container width */
+        }
+
     </style>
 </head>
 <body>
@@ -218,7 +145,7 @@
             </div>
             <nav>
                 <ul>
-                              <li><a href="index.html" target="_blank">Home Page</a></li>
+                                  <li><a href="index.html" target="_blank">Home Page</a></li>
                     <li><a href="Creator.html" target="_blank">Avatar Creator</a></li>
                     <li><a href="Events.html"target="_blank">Events</a></li>
                     <li><a href="Lore.html"target="_blank">Lore</a></li>
@@ -230,224 +157,17 @@
         </div>
     </header>
 
-    <h2 style="font-family: 'Cinzel', sans-serif;">Avatar Creator</h2>
-    <br> 
-    <label for="imageInput" style="cursor: pointer; background-color: #8600d3; color: white; padding: 6px 12px; border: none; margin-bottom: 10px;">
-        Choose File
-        <input type="file" id="imageInput" accept="image/*" multiple style="display: none;">
-    </label>
-    <button id="saveButton" style="margin-bottom: 10px;">Save Avatar</button>
-    <div class="canvas-container">
-        <canvas id="canvas"></canvas>
-        <div class="layer-container">
-            <div id="layerList"></div>
+    <main>
+        <div class="bubble-container">
+            <div class="bubble">
+                <p class="bubble-text">More To Come!</p>
+                <img src="https://i.postimg.cc/P5z8ysSb/IMG-2597.png" alt="Website Logo">
+            </div>
         </div>
-    </div>
-   
-
-    <script>
-        
-        const saveButton = document.getElementById("saveButton");
-        saveButton.addEventListener("click", () => {
-            const canvas = document.getElementById("canvas");
-
-            // Check if the HTMLCanvasElement.toBlob method is available
-            if (canvas.toBlob) {
-                canvas.toBlob((blob) => {
-                    // Create a temporary link element to trigger the download
-                    const link = document.createElement("a");
-                    link.href = URL.createObjectURL(blob);
-                    link.download = "canvas_image.png"; // Specify the download file name
-                    link.click();
-                }, "image/png"); // You can specify the desired image format here
-            } else {
-                // Fallback for browsers that don't support toBlob
-                alert("Your browser doesn't support saving canvas images. Please try a different browser.");
-            }
-        });
-
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
-        const layerList = document.getElementById("layerList");
-
-        // Store uploaded images and their positions
-        const uploadedImages = [];
-        const imagePositions = [];
-
-        // Variables for dragging functionality
-        let isDragging = false;
-        let dragImageIndex = -1;
-        let offsetX, offsetY;
-  
-        // Load uploaded images onto the canvas
-        const loadImages = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            uploadedImages.forEach((image, index) => {
-                const position = imagePositions[index];
-                ctx.drawImage(image, position.x, position.y);
-            });
-        };
-
-        // Function to adjust canvas size to fit images
-        const adjustCanvasSize = () => {
-            const maxWidth = Math.max(...uploadedImages.map(image => image.width));
-            const maxHeight = Math.max(...uploadedImages.map(image => image.height));
-            canvas.width = maxWidth;
-            canvas.height = maxHeight;
-            loadImages();
-        };
-
-        // Function to add a new image to the canvas
-        const addImage = (image) => {
-            uploadedImages.push(image);
-            imagePositions.push({ x: 0, y: 0 });
-            createLayerItem(image.src, uploadedImages.length - 1);
-            adjustCanvasSize();
-        };
-
-        // Create a new layer item in the layer list
-        const createLayerItem = (imageUrl, index) => {
-            const layerItem = document.createElement("div");
-            layerItem.className = "layer-item";
-
-            const img = document.createElement("img");
-            img.src = imageUrl;
-
-            const upButton = document.createElement("button");
-            upButton.className = "layer-button";
-            upButton.textContent = "✶";
-            upButton.addEventListener("click", () => moveLayerUp(index));
-
-        
-
-            layerItem.appendChild(img);
-            layerItem.appendChild(upButton);
-           
-
-            // Add a delete button for each layer
-            addDeleteButton(imageUrl, index, layerItem);
-
-            layerList.appendChild(layerItem);
-        };
-
-        // Move a layer up in the stack
-        const moveLayerUp = (index) => {
-            if (index > 0) {
-                [uploadedImages[index], uploadedImages[index - 1]] = [uploadedImages[index - 1], uploadedImages[index]];
-                [imagePositions[index], imagePositions[index - 1]] = [imagePositions[index - 1], imagePositions[index]];
-                updateLayerList();
-                loadImages();
-            }
-        };
-
-        // Move a layer down in the stack
-        const moveLayerDown = (index) => {
-            if (index < uploadedImages.length - 1) {
-                [uploadedImages[index], uploadedImages[index + 1]] = [uploadedImages[index + 1], uploadedImages[index]];
-                [imagePositions[index], imagePositions[index + 1]] = [imagePositions[index + 1], imagePositions[index]];
-                updateLayerList();
-                loadImages();
-            }
-        };
-
-        // Update the layer list to match the current image stack
-        const updateLayerList = () => {
-            layerList.innerHTML = "";
-            uploadedImages.forEach((image, index) => {
-                createLayerItem(image.src, index);
-            });
-        };
-
-        // Event listener for mouse down
-        canvas.addEventListener("mousedown", (e) => {
-            const mouseX = e.clientX - canvas.getBoundingClientRect().left;
-            const mouseY = e.clientY - canvas.getBoundingClientRect().top;
-
-            // Check if the click is inside an image
-            for (let i = uploadedImages.length - 1; i >= 0; i--) {
-                const position = imagePositions[i];
-                const image = uploadedImages[i];
-                if (
-                    mouseX >= position.x &&
-                    mouseX <= position.x + image.width &&
-                    mouseY >= position.y &&
-                    mouseY <= position.y + image.height
-                ) {
-                    isDragging = true;
-                    dragImageIndex = i;
-                    offsetX = mouseX - position.x;
-                    offsetY = mouseY - position.y;
-                    break;
-                }
-            }
-        });
-
-        // Event listener for mouse move
-        canvas.addEventListener("mousemove", (e) => {
-            if (isDragging && dragImageIndex !== -1) {
-                const mouseX = e.clientX - canvas.getBoundingClientRect().left;
-                const mouseY = e.clientY - canvas.getBoundingClientRect().top;
-                imagePositions[dragImageIndex].x = mouseX - offsetX;
-                imagePositions[dragImageIndex].y = mouseY - offsetY;
-                loadImages();
-            }
-        });
-
-        // Event listener for mouse up
-        canvas.addEventListener("mouseup", () => {
-            isDragging = false;
-            dragImageIndex = -1;
-        });
-
-        // Event listener for mouse leave (for handling mouseup outside the canvas)
-        canvas.addEventListener("mouseleave", () => {
-            isDragging = false;
-            dragImageIndex = -1;
-        });
-
-        // Handle image uploads
-        const imageInput = document.getElementById("imageInput");
-        imageInput.addEventListener("change", () => {
-            const files = imageInput.files;
-            for (let i = 0; i < files.length; i++) {
-                const image = new Image();
-                image.src = URL.createObjectURL(files[i]);
-                image.onload = () => {
-                    addImage(image);
-                };
-            }
-        });
-
-        // Function to open and close modals
-        const openModal = (modalId) => {
-            const modal = document.getElementById(modalId);
-            modal.style.display = "block";
-        };
-
-        const closeModal = (modalId) => {
-            const modal = document.getElementById(modalId);
-            modal.style.display = "none";
-        };
-
-        // Function to delete a layer
-        const deleteLayer = (index) => {
-            uploadedImages.splice(index, 1);
-            imagePositions.splice(index, 1);
-            updateLayerList();
-            adjustCanvasSize();
-            loadImages();
-        };
-
-        // Function to create a delete button for a layer
-        const addDeleteButton = (imageUrl, index, layerItem) => {
-            const deleteButton = document.createElement("button");
-            deleteButton.className = "delete-button";
-            deleteButton.textContent = "Delete";
-            deleteButton.addEventListener("click", () => deleteLayer(index));
-
-            layerItem.appendChild(deleteButton); // Add the delete button to the layer item
-        };
-
-    </script>
+    </main>
+    
+    <footer>
+        <!-- Footer content here -->
+    </footer>
 </body>
 </html>
