@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nebula Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* Basic styling for the whole page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(171, 171, 214); /* Change the background color to white */
+            color: #000; /* Change the text color to black */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the page takes up at least the full viewport height */
+        }
+
+        /* Header styles */
+        header {
+            background-color: rgb(58, 0, 124);
+            color: white;
+            padding: 1px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        /* Main content styles */
+        main {
+            display: flex; /* Add flex display to align boxes side by side */
+            justify-content: space-between;
+
+            background-image: url('https://i.postimg.cc/3R7pkWRm/gal.png');
+            background-size: contain;
+            flex: 1; /* Allow the main content to grow and take up the available space */
+        }
+
+        /* Box styles */
+        .box {
+            flex-basis: calc(33.33% - 20px); /* Adjust as needed for responsiveness */
+            padding: 4px;
+            background-color: rgb(225, 218, 243); /* Set the background color of individual boxes to white */
+            color: black; /* Change the text color to black */
+            margin: 100px;
+            border-radius: 20px;
+            border: 4px solid rgb(58, 0, 124); /* Celestial and magical border color */
+            text-align: center; /* Center align text */
+        }
+
+        /* Box header styles */
+        .box h2 {
+            background-color: rgb(58, 0, 124); /* Header bar background color */
+            color: white; /* Header text color */
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .box h5 {
+            color: black; /* Header text color */
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-size: 20px;
+        }
+
+        /* Announcements styles */
+        .announcement-box {
+            background-color: #fff3b2; /* Set the background color to transparent */
+            border: 2px solid #FFD700; /* Celestial and magical border color */
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .announcement-box:hover {
+            background-color: rgba(255, 215, 0, 0.2); /* Light up on hover */
+        }
+
+        /* Modal styles */
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            max-width: 100%; /* Adjust as needed */
+            max-height: 100%; /* Adjust as needed */
+            overflow-y: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: justify;
+            z-index: 4;
+            font-size: 14px;
+            flex: 1;
+            display: flex; /* Apply flexbox to the modal */
+        }
+
+        .modal-content {
+            display: flex; /* Use flexbox to align image and text side by side */
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 100%; /* Adjust image width as needed */
+            height: auto; /* Add space between image and text */
+        }
+
+        .modal p {
+            flex: 1; /* Allow paragraph to take remaining space */
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: rgb(58, 0, 124);
+            padding: 10px 0;
+            text-align: center;
+            flex-shrink: 0; /* Prevent the footer from shrinking */
+        }
+
+        /* Style the links on hover */
+        nav li a {
+            color: #FFD700; /* Change the link color on hover */
+            text-decoration: none; /* Remove the default underline */
+            transition: color 0.3s; /* Add a smooth transition effect */
+        }
+
+        nav li a:hover {
+            color: white; /* Change the link color on hover */
+        }
+
+        /* Close button for the announcement modals */
+        .announcement-close-button {
+            font-size: 24px; /* Adjust the font size to your desired size */
+            cursor: pointer; /* Add a cursor pointer to indicate it's clickable */
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 5; /* Ensure the button stays on top of other elements */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://i.postimg.cc/P5z8ysSb/IMG-2597.png">
+                <h1 style="font-family: 'Cinzel', sans-serif;">Nebula Nexus</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="HOME PAGE.html" target="_blank">Home Page</a></li>
+                    <li><a href="avatar creator.html" target="_blank">Avatar Creator</a></li>
+                    <li><a href="events.html" target="_blank">Events</a></li>
+                    <li><a href="lore.html" target="_blank">Lore</a></li>
+                    <li><a href="games.html" target="_blank">Games</a></li>
+                    <li><a href="GACHA.html" target="_blank">GACHA</a></li>
+                    <li><a href="shop.html" target="_blank">Shop</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="box" id="announcements">
+            <h2 style="font-family: 'Cinzel', sans-serif;">Announcements</h2>
+            <div class="announcement-list">
+                <!-- Announcements will be populated dynamically using JavaScript -->
+            </div>
+        </section>
+        <section class="box" id="aotw">
+            <h2 style="font-family: 'Cinzel', sans-serif;">AOTW</h2>
+            <div id="aotw-image">
+                <img src="https://i.postimg.cc/t4R5nvyf/composite-image-1.png" alt="AOTW Image">
+            </div>
+        </section>
+        <section class="box" id="upcoming">
+            <h2 style="font-family: 'Cinzel', sans-serif;">Upcoming</h2>
+            <div id="upcoming-gallery" class="image-rotator">
+                <!-- Upcoming images will rotate horizontally -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+
+    <div class="modal-container" id="announcement-modal">
+        <div class="modal">
+            <div class="modal-content">
+                <img id="announcement-image" src="" alt="">
+                <p id="announcement-text">
+                    <!-- Announcement text will be populated dynamically using JavaScript -->
+                </p>
+            </div>
+            <span id="close-modal" class="announcement-close-button">&times;</span>
+        </div>
+        <div class="modal-overlay" id="modal-overlay"></div>
+    </div>
+
+
+    <script>
+        // JavaScript for populating dynamic content and functionalities
+        // Sample data for announcements (replace with your own data)
+        const announcementsData = [
+            {
+                title: 'Latest News',
+                text: `<b>Welcome to Nebula Nexus</b>,<br><br>
+                    We're delighted to have you as part of our vibrant community, dedicated to the creativity and innovation surrounding avatar customization and expression. We welcome you to the beginning of a new story filled with NPCs, avatar customization, events, and games. While we encourage free expression and creativity, we must ensure that our community remains a professional and respectful space for all.<br><br>
+                    Kindly note that while expressing your creativity, we ask that all interactions, discussions, and contributions within our community align with professional conduct. Respect and consideration for others' viewpoints, diverse backgrounds, and artistic expressions are of utmost importance. If your boundaries are crossed, we encourage you to communicate with Nebula Nexus’ admins and moderators.<br><br>
+                    Let's work together to nurture a space where creativity flourishes, ideas flow, and mutual respect thrives. Your commitment to upholding professional standards within our community is deeply appreciated.<br><br>
+                    On our opening day, we offer our first premium items you can acquire through our Angelic Supporter subscription. If you’d like to start with the basics — any and all — community members can download free assets from our public drive available. While we can’t necessarily monitor and stop you from using premium items without purchasing a subscription, we urge you to support us by not doing so. We are a hard working staff conceptualizing, pixeling, and publishing art. Your subscription helps our community grow, allowing us to save and afford additional assets to expand.<br><br>
+                    I know right now conditions are not “ideal”, but Avatar communities are going extinct. Our staff will do what is necessary to keep avatars from dying out.<br><br>
+                    <b>With Warm Regards</b>,<br><br>
+                    <i>Nebula Nexus Staff</i><br><br> Oh and HAPPY HALLOWEEN!`,
+                image: "https://i.postimg.cc/rwF0BkvW/IMG-3554.png"
+            },
+            // Add more announcements as needed
+        ];
+
+        // Function to populate announcements
+        function populateAnnouncements() {
+            const announcementList = document.querySelector(".announcement-list");
+            announcementsData.forEach((announcement, index) => {
+                const announcementBox = document.createElement("div");
+                announcementBox.classList.add("announcement-box");
+                const announcementHeader = document.createElement("h5");
+                announcementHeader.textContent = announcement.title;
+                announcementBox.appendChild(announcementHeader);
+                announcementList.appendChild(announcementBox);
+
+                // Add click event listener to open modal
+                announcementBox.addEventListener("click", () => {
+                    openAnnouncementModal(announcement.title, announcement.text, announcement.image);
+                });
+            });
+        }
+
+        // Function to open announcement modal
+        function openAnnouncementModal(title, text, image) {
+            const modalContainer = document.getElementById("announcement-modal");
+            const modalContent = document.querySelector(".modal");
+            const modalText = document.getElementById("announcement-text");
+            const modalImage = document.getElementById("announcement-image");
+            const modalOverlay = document.getElementById("modal-overlay");
+
+            modalText.innerHTML = text;
+            if (image) {
+                modalImage.src = image;
+                modalImage.style.display = "block";
+            } else {
+                modalImage.style.display = "none";
+            }
+
+            modalContainer.style.display = "block";
+            modalOverlay.style.display = "block";
+        }
+
+        // Function to close announcement modal
+        function closeAnnouncementModal() {
+            const modalContainer = document.getElementById("announcement-modal");
+            const modalOverlay = document.getElementById("modal-overlay");
+            modalContainer.style.display = "none";
+            modalOverlay.style.display = "none";
+        }
+
+        // Close modal when clicking the close button (X)
+        const closeModalButton = document.getElementById("close-modal");
+        closeModalButton.addEventListener("click", closeAnnouncementModal);
+
+        // Close modal when clicking anywhere outside of it
+        const modalOverlay = document.getElementById("modal-overlay");
+        modalOverlay.addEventListener("click", closeAnnouncementModal);
+
+        // Function to rotate upcoming images horizontally
+        const imageRotator = document.querySelector(".image-rotator");
+        let currentIndex = 0;
+        const upcomingImages = [
+            "https://i.postimg.cc/Rhwkv2nx/IMG-3558.png",
+            "https://i.postimg.cc/vHsR08pY/IMG-3559.png",
+            "https://i.postimg.cc/RCf51Jpp/IMG-3560.png",
+        ];
+
+        function rotateImages() {
+            const upcomingImage = document.createElement("img");
+            upcomingImage.src = upcomingImages[currentIndex];
+            upcomingImage.alt = `Upcoming Image ${currentIndex + 1}`;
+            upcomingImage.style.maxWidth = "100%";
+            upcomingImage.style.height = "auto";
+
+            imageRotator.innerHTML = ""; // Clear existing images
+            imageRotator.appendChild(upcomingImage);
+
+            currentIndex = (currentIndex + 1) % upcomingImages.length;
+
+            setTimeout(rotateImages, 3000); // Change image every 3 seconds
+        }
+
+        // Start the image rotation
+        rotateImages();
+
+        // Call functions to populate dynamic content
+        populateAnnouncements(); // Function to rotate AOTW images horizontally
+    const aotwImageContainer = document.getElementById("aotw-image");
+    const aotwImages = [
+    "https://i.postimg.cc/Rhwkv2nx/IMG-3558.png",
+            "https://i.postimg.cc/vHsR08pY/IMG-3559.png",
+            "https://i.postimg.cc/RCf51Jpp/IMG-3560.png",
+    ];
+    let aotwImageIndex = 0;
+
+    function rotateAOTWImage() {
+        aotwImageContainer.innerHTML = ""; // Clear existing image
+        const aotwImage = document.createElement("img");
+        aotwImage.src = aotwImages[aotwImageIndex];
+        aotwImage.alt = `AOTW Image ${aotwImageIndex + 1}`;
+        aotwImage.style.maxWidth = "100%";
+        aotwImage.style.height = "auto";
+        aotwImageContainer.appendChild(aotwImage);
+
+        aotwImageIndex = (aotwImageIndex + 1) % aotwImages.length;
+
+        setTimeout(rotateAOTWImage, 3000); // Change AOTW image every 3 seconds
+    }
+
+    // Start the AOTW image rotation
+    rotateAOTWImage();
+        
+    </script>
+</body>
+</html>
